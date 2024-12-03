@@ -14,8 +14,8 @@
             <label class="form-label" for="locations">Location</label>
             <select class="form-select" id="locations" name="locations">
             <option value="-" selected disabled>-</option>
-            <option value="UNITI VILLAGE" {{ ($data['block']->location == 'UNITI VILLAGE') ? 'selected' : '' }}>UNITI VILLAGE</option>
-            <option value="EXORA PERMAI" {{ ($data['block']->location == 'EXORA PERMAI') ? 'selected' : '' }}>EXORA PERMAI</option>
+            <option value="DESASISWA" {{ ($data['block']->location == 'DESASISWA') ? 'selected' : '' }}>DESASISWA</option>
+            <option value="DESASISWI" {{ ($data['block']->location == 'DESASISWI') ? 'selected' : '' }}>DESASISWI</option>
             </select>
         </div>
       </div>
