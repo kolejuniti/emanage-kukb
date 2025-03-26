@@ -60,6 +60,10 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/hostel/student/checkout', [App\Http\Controllers\HostelController::class, 'hostelCheckout'])->name('hostel.student.checkout');
     Route::post('/hostel/student/checkout/getStudentInfo2', [App\Http\Controllers\HostelController::class, 'getStudentInfo2']);
     Route::post('/hostel/student/checkout/checkoutStudent', [App\Http\Controllers\HostelController::class, 'checkoutStudent']);
+    Route::get('/hostel/student/printStudentSlip/{student}', [App\Http\Controllers\HostelController::class, 'printStudentSlip'])->name('hostel.student.printSlip');
+    Route::get('/hostel/debit', [App\Http\Controllers\HostelController::class, 'debitNote'])->name('hostel.student.debit');
+    Route::post('/hostel/debit/getStudent', [App\Http\Controllers\HostelController::class, 'getStudentDebit']);
+    Route::post('/hostel/debit/storeDebit', [App\Http\Controllers\HostelController::class, 'storeDebit']);
     Route::get('/hostel/report/studentHostelReport', [App\Http\Controllers\HostelController::class, 'studentHostelReport'])->name('hostel.report.studentHostelReport');
     Route::post('/hostel/report/studentHostelReport2', [App\Http\Controllers\HostelController::class, 'studentHostelReport'])->name('hostel.report.studentHostelReport2');
     Route::get('/hostel/report/unitStatus', [App\Http\Controllers\HostelController::class, 'unitStatus'])->name('hostel.report.unitStatus');
@@ -85,6 +89,19 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/user/spm/{ic}', [App\Http\Controllers\UserController::class, 'spmIndex'])->name('user.spm');
     Route::post('/user/spm/{ic}/store', [App\Http\Controllers\UserController::class, 'spmStore'])->name('user.spm.store');
     
+    Route::prefix('all')->group(function () {
+        Route::get('/student/announcements/getannoucement', [App\Http\Controllers\UserController::class, 'indexAnnouncements']);
+        Route::post('/student/announcements/post', [App\Http\Controllers\UserController::class, 'storeAnnouncements']);
+        Route::get('/student/announcements/get/{id}', [App\Http\Controllers\UserController::class, 'showAnnouncements']);
+        Route::put('/student/announcements/put/{id}', [App\Http\Controllers\UserController::class, 'updateAnnouncements']);
+        Route::delete('/student/announcements/delete/{id}', [App\Http\Controllers\UserController::class, 'destroyAnnouncements']);
+        Route::get('/student/announcements/getBannerAnnouncement', [App\Http\Controllers\UserController::class, 'getBannerAnnouncement']);
+    });
+
+    Route::get('/all/student/announcements', function () {
+        return view('hostel.student.announcements.index');
+    })->name('all.student.announcements');
+
 });
 
 
